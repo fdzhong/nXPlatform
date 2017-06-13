@@ -1,0 +1,101 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Floor</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<h2>同悦: 20170410</h2>
+	<h2> {{Buildingid}}</h2>
+	<div padding>
+		<ion-segment [(ngModel)]="selectedTab">
+			<ion-segment-button value="全部">
+				全部
+			</ion-segment-button>
+			<ion-segment-button value="待接待">
+				待接待
+			</ion-segment-button>
+			<ion-segment-button value="待整改">
+				<div id="p1" style="background-color:red;width:8px;height:8px;border-radius:8px;display:inline-block;"></div> 待整改
+			</ion-segment-button>
+			<ion-segment-button value="已整改">
+				<div id="p1" style="background-color:blue;width:8px;height:8px;border-radius:8px;display:inline-block;"></div> 已整改
+			</ion-segment-button>
+			<ion-segment-button value="已通过">
+				<div id="p1" style="background-color:green;width:8px;height:8px;border-radius:8px;display:inline-block;"></div> 已通过
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+
+	<div [ngSwitch]="selectedTab">
+		<ion-list *ngSwitchCase="'全部'">
+			<ion-list-header *ngFor="let floor of floors">
+				<h2>{{floor.id}}F</h2>
+				<p> </p>
+				<p> </p>
+				<button ion-button color="light" round *ngFor="let room of floor.value" (click)="itemSelected(room.roomid)"> 
+		   {{room.name}} 
+		  </button>
+			</ion-list-header>
+		</ion-list>
+		<ion-list *ngSwitchCase="'待接待'">
+			<div *ngFor="let floor of floorsready">
+				<div *ngIf="floor.value.length > 0">
+					<ion-list-header>
+
+						<h2>{{floor.id}}F</h2>
+						<p> </p>
+						<p> </p>
+						<button ion-button color="light" round *ngFor="let room of floor.value" (click)="itemSelected(room.roomid)"> 
+		   {{room.name}} 
+		  </button>
+					</ion-list-header>
+				</div>
+			</div>
+		</ion-list>
+		<ion-list *ngSwitchCase="'待整改'">
+			<div *ngFor="let floor of floorsforfix">
+				<div *ngIf="floor.value.length > 0">
+					<ion-list-header>
+						<h2>{{floor.id}}F</h2>
+						<p> </p>
+						<p> </p>
+						<button ion-button color="danger" round *ngFor="let room of floor.value" (click)="itemSelected(room.roomid)"> 
+		   {{room.name}} 
+		  </button>
+					</ion-list-header>
+				</div>
+			</div>
+		</ion-list>
+		<ion-list *ngSwitchCase="'已整改'">
+			<div *ngFor="let floor of floorsfixed">
+				<div *ngIf="floor.value.length > 0">
+					<ion-list-header>
+						<h2>{{floor.id}}F</h2>
+						<p> </p>
+						<p> </p>
+						<button ion-button color="primary" round *ngFor="let room of floor.value" (click)="itemSelected(room.roomid)"> 
+		   {{room.name}} 
+		  </button>
+					</ion-list-header>
+				</div>
+			</div>
+		</ion-list>
+		<ion-list *ngSwitchCase="'已通过'">
+			<div *ngFor="let floor of floorspass">
+				<div *ngIf="floor.value.length > 0">
+					<ion-list-header>
+						<h2>{{floor.id}}F</h2>
+						<p> </p>
+						<p> </p>
+						<button ion-button color="secondary" round *ngFor="let room of floor.value" (click)="itemSelected(room.roomid)"> 
+		   {{room.name}}
+		  </button>
+
+					</ion-list-header>
+				</div>
+			</div>
+		</ion-list>
+	</div>
+
+</ion-content>

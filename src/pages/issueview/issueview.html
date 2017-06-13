@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>问题详情</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>同悦: 20170410</h2>
+	  <h2> {{titlename}}</h2>
+  <ion-list>
+  <ion-item>
+    <ion-label>部位</ion-label> 
+    <ion-label>{{section}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>检查项</ion-label>
+    <ion-label>{{checkitem}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>描述</ion-label>
+    <ion-label>{{itdesc}}</ion-label>
+  </ion-item>
+  </ion-list>
+  
+  <ion-list>
+  <ion-item>   
+    <ion-label>整改前照片</ion-label> 	
+    <ion-thumbnail item-left *ngFor="let item of images">
+      <img [src]="item">
+    </ion-thumbnail>
+  </ion-item>
+  
+  <ion-item>   
+    <ion-label>整改后照片</ion-label> 	
+    <button ion-button icon-only (click)="cameraclick()">
+	  <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+	 </button>
+    <ion-thumbnail item-left *ngFor="let item of imagesfixed">
+      <img [src]="item">
+    </ion-thumbnail>
+  </ion-item>
+  </ion-list>
+ 
+  <ion-list>
+    <button ion-button full outline (click)="plusinfo()">更多信息 {{arrow}}</button>
+  </ion-list>
+
+  <div id="plusinfo" hidden=true>
+  <ion-list>
+  <ion-item>
+    <ion-label>承建商(整改单位)</ion-label>
+    <ion-label>{{vend}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>责任单位</ion-label>
+    <ion-label>{{resunit}}</ion-label>    
+  </ion-item>  
+  </ion-list>  
+  <ion-list>
+  <ion-item>
+    <ion-label>登记时间</ion-label>
+    <ion-label>{{registertime}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>整改时限</ion-label>
+    <ion-label>{{duetime}}</ion-label>    
+  </ion-item>  
+  <ion-item>
+    <ion-label>整改时间</ion-label>
+    <ion-label>{{fixtime}}</ion-label>    
+  </ion-item> 
+  </ion-list> 
+  </div>
+
+  <div id="actionbtn" hidden=false>
+  <button ion-button block (click)="passclick()">通过</button>
+  <button ion-button block color="light" (click)="rejectclick()">退回</button>
+  <button ion-button block color="light" (click)="closedclick()">非正常关闭</button>
+  </div>
+  
+</ion-content>

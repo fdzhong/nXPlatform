@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Issue</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>同悦: 20170410</h2>
+	  <h2> {{titlename}}</h2>
+  <ion-list>
+  <ion-item>
+    <ion-label>部位</ion-label>
+    <ion-select [(ngModel)]="section">
+      <ion-option *ngFor="let item of sections">{{ item }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>检查项</ion-label>
+    <ion-select [(ngModel)]="checkitem" (ionChange)="itemchange()">
+      <ion-option *ngFor="let item of checkitems" >{{item}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>描述</ion-label>
+    <ion-select multiple="true" [(ngModel)]="itdesc">
+      <ion-option *ngFor="let item of itemdesc">{{ item }}</ion-option>
+    </ion-select>
+  </ion-item>
+  </ion-list>
+  <ion-list>
+   <ion-item>
+    <ion-input type="text" placeholder="补充说明" height=400 [(ngModel)]="descplus"></ion-input>
+  </ion-item>
+  </ion-list>
+  
+  <ion-list>
+  <ion-item>
+    <button ion-button icon-only (click)="cameraclick()">
+	  <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+	 </button>	
+    <ion-thumbnail item-left *ngFor="let item of images">
+      <img [src]="item">
+    </ion-thumbnail>
+  </ion-item>
+  </ion-list>
+  
+    <ion-list>
+  <ion-item>
+    <ion-label>紧急程度</ion-label>
+    <ion-select [(ngModel)]="uglevel">
+      <ion-option *ngFor="let item of urgencylevel">{{ item }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>承建商(整改单位)</ion-label>
+    <ion-select [(ngModel)]="vend">
+      <ion-option *ngFor="let item of vendors" >{{item}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>责任单位</ion-label>
+    <ion-select [(ngModel)]="resunit">
+      <ion-option *ngFor="let item of responsibilityunit">{{ item }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-toggle checked="false"></ion-toggle>
+      <ion-label>
+        现场整改通过
+      </ion-label>
+  </ion-item>
+  </ion-list>  
+  
+  <button ion-button block (click)="uploaddata()">提交</button>
+  
+</ion-content>
